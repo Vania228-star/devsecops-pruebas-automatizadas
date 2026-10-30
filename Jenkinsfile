@@ -13,10 +13,10 @@ pipeline {
         }
         stage('Security Test') {
             steps {
-                dependencyCheck additionalArguments: '--scan . --format HTML --format XML --enableExperimental', odcInstallation: 'dependency-check'
+                dependencyCheck additionalArguments: '--scan . --format HTML --format XML --enableExperimental', odcInstallation: 'dependency-check', nvdCredentialsId: 'nvd-api-key'
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
-        }
+      }
         stage('Deploy') {
             steps { echo 'Deploy: desplegando app' }
         }
