@@ -1,14 +1,11 @@
-Set-Content -Path app.py -Value @"
-from flask import Flask, request, render_template_string
+from flask import Flask, request
 
 app = Flask(__name__)
 
 @app.route('/hello')
 def hello():
-    name = request.args.get('name', 'invitado')
-    template = f"<h1>Hola, {name}</h1>"
-    return render_template_string(template)
+    name = request.args.get('name')
+    return f"Hello, {name}!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-"@
+    app.run(debug=True)

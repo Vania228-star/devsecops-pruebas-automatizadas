@@ -1,6 +1,6 @@
-Set-Content -Path Jenkinsfile -Value @"
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps { echo 'Build: preparando entorno' }
@@ -19,4 +19,3 @@ pipeline {
         }
     }
 }
-"@
