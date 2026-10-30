@@ -12,7 +12,10 @@ pipeline {
             steps { echo 'Analyze: SonarQube (configurar luego)' }
         }
         stage('Security Test') {
-            steps { echo 'Security Test: Dependency-Check + ZAP (configurar luego)' }
+            steps {
+                dependencyCheck additionalArguments: '--scan . --format HTML --format XML --enableExperimental', odcInstallation: 'dependency-check'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
         }
         stage('Deploy') {
             steps { echo 'Deploy: desplegando app' }
